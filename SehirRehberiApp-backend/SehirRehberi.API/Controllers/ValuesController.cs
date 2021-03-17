@@ -19,6 +19,7 @@ namespace SehirRehberi.API.Controllers
         private readonly IValueService _valueService;
         public ValuesController(IValueService valueService)
         {
+
             _valueService = valueService;
         }
 
