@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HMxGHaLbc+pYjvbzMoeAjFK2+UHT/yK53YOZ6W0fC06NlwtJJ++jU7GDbFm/q0+kskfjnZn8QzBIxtDkfqvMwA==",
+  "dgSpecHash": "lIywNMvkw7dTe/Ai47njHBQzKKsymlpsnTHLhi66WWPXJgxEnlLdjAIaf/6qEt7/AJMGht3wbxVF3b5b6gQ/qw==",
   "success": true,
-  "projectFilePath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.API.csproj",
+  "projectFilePath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

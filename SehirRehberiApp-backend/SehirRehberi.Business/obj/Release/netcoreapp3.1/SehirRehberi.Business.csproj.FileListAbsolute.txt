@@ -12,3 +12,17 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Busines
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.csproj.CopyComplete
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.Business.deps.json
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.Business.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.Business.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.DataAccess.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.DataAccess.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\bin\Release\netcoreapp3.1\SehirRehberi.Entities.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.csprojAssemblyReference.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.AssemblyInfoInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.AssemblyInfo.cs
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.csproj.CopyComplete
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Business\obj\Release\netcoreapp3.1\SehirRehberi.Business.pdb

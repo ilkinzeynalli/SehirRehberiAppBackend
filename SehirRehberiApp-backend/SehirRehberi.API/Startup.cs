@@ -13,11 +13,14 @@ using Microsoft.Extensions.Logging;
 using SehirRehberi.API.Modules;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Seeders;
+using SehirRehberi.WebApi.Modules;
 
 namespace SehirRehberi.API
 {
     public class Startup
     {
+        private const string CorsPolicyName = "EnableCors";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,6 +31,8 @@ namespace SehirRehberi.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Enable Cross Module  configure 
+            EnableCrossModule.Load(services, CorsPolicyName);
 
             services.AddControllers();
 
@@ -42,7 +47,6 @@ namespace SehirRehberi.API
 
             //Configure DI for app services
             LogicModule.Load(services);
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,11 +56,15 @@ namespace SehirRehberi.API
             {
                 app.UseDeveloperExceptionPage();
 
+
+                //Seed Data configure
                 SeederIdentityData.EnsurePopulated(app, Configuration).Wait();
                 SeederData.EnsurePopulated(app).Wait();
             }
 
             app.UseRouting();
+
+            app.UseCors(CorsPolicyName);
 
             app.UseAuthorization();
 

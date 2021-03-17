@@ -67,11 +67,5 @@ namespace SehirRehberi.API.Controllers
 
             return Ok(await _valueService.DeleteValue(result));
         }
-
-        [HttpGet("arrays")]
-        public async Task<IActionResult> GetArrays()
-        {
-            return Ok("deneme");
-        }
     }
 }

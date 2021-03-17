@@ -6675,9 +6675,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.API.csproj",
-      "projectName": "SehirRehberi.API",
-      "projectPath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.API.csproj",
+      "projectUniqueName": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.WebApi.csproj",
+      "projectName": "SehirRehberi.WebApi",
+      "projectPath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.WebApi.csproj",
       "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
       "outputPath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\obj\\",
       "projectStyle": "PackageReference",

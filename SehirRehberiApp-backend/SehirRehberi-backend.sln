@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SehirRehberi.API", "SehirRehberi.API\SehirRehberi.API.csproj", "{AAB3BA72-104E-4FCE-ABD0-0910A1594E08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SehirRehberi.WebApi", "SehirRehberi.API\SehirRehberi.WebApi.csproj", "{AAB3BA72-104E-4FCE-ABD0-0910A1594E08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SehirRehberi.Entities", "SehirRehberi.Entities\SehirRehberi.Entities.csproj", "{37AA2351-6975-44F3-B60A-D5518D788591}"
 EndProject
