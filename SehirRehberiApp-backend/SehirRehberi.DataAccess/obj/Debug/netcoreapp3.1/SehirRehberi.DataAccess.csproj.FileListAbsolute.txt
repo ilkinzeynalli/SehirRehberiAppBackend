@@ -1,0 +1,24 @@
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.deps.json
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.dll
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.csprojAssemblyReference.cache
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.AssemblyInfoInputs.cache
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.AssemblyInfo.cs
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.pdb
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.csproj.CopyComplete
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.dll
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.deps.json
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.csprojAssemblyReference.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.AssemblyInfoInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.AssemblyInfo.cs
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.csproj.CopyComplete
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.DataAccess\obj\Debug\netcoreapp3.1\SehirRehberi.DataAccess.pdb

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>2ec6181b-ab3c-46cb-aa20-029ece23e59d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SehirRehberi.Business\SehirRehberi.Business.csproj" />
+    <ProjectReference Include="..\SehirRehberi.DataAccess\SehirRehberi.DataAccess.csproj" />
+    <ProjectReference Include="..\SehirRehberi.Entities\SehirRehberi.Entities.csproj" />
+  </ItemGroup>
+
+
+</Project>

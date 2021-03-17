@@ -1,0 +1,18 @@
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.deps.json
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.csprojAssemblyReference.cache
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.AssemblyInfoInputs.cache
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.AssemblyInfo.cs
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Angular Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.deps.json
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.csprojAssemblyReference.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.AssemblyInfoInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.AssemblyInfo.cs
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
