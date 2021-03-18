@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels
+namespace SehirRehberi.Entities.Concrete
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationRole : IdentityRole
     {
     }
 }

@@ -123,7 +123,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationRole", b =>
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -150,7 +150,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationUser", b =>
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -215,6 +215,69 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CityDescription")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("CityName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("CityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.Photo", b =>
+                {
+                    b.Property<int>("PhotoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAdded")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime")
+                        .HasDefaultValueSql("getDate()");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<bool>("IsMain")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PublicId")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("PhotoId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Photos");
+                });
+
             modelBuilder.Entity("SehirRehberi.Entities.Concrete.Value", b =>
                 {
                     b.Property<int>("Id")
@@ -232,7 +295,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationRole", null)
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -241,7 +304,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationUser", null)
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -250,7 +313,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationUser", null)
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -259,13 +322,13 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationRole", null)
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationUser", null)
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -274,11 +337,42 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels.ApplicationUser", null)
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.City", b =>
+                {
+                    b.HasOne("SehirRehberi.Entities.Concrete.ApplicationUser", "ApplicationUser")
+                        .WithMany("Cities")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.Photo", b =>
+                {
+                    b.HasOne("SehirRehberi.Entities.Concrete.City", "City")
+                        .WithMany("Photos")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.ApplicationUser", b =>
+                {
+                    b.Navigation("Cities");
+                });
+
+            modelBuilder.Entity("SehirRehberi.Entities.Concrete.City", b =>
+                {
+                    b.Navigation("Photos");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,8 +18,11 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 
 
         private IValueRepository _values;
+        private ICityRepository _cities;
 
         public IValueRepository Values => (_values ?? (_values = new EfValueRepository(_context)));
+
+        public ICityRepository Cities => (_cities ?? (_cities = new EfCityRepository(_context)));
 
         public async Task<int> Complete()
         {

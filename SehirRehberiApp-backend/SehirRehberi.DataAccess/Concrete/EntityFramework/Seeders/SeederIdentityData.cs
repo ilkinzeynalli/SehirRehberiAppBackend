@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
-using SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels;
+using SehirRehberi.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -14,12 +14,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
         {
         }
 
-        public ApplicationIdentityDbContext Context
-        {
-            get
-            {
-                return _context as ApplicationIdentityDbContext;
-            }
-        }
+        public ApplicationIdentityDbContext Context => _context as ApplicationIdentityDbContext;
+
     }
 }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SehirRehberi.Business.Abstract;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.Entities.Concrete;
+using SehirRehberi.WebApi.Attributes;
 
 namespace SehirRehberi.API.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiRoutePrefix("values")]
     [ApiController]
     public class ValuesController : ControllerBase
     {

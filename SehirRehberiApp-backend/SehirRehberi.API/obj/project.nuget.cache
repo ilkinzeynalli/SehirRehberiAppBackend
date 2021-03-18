@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lIywNMvkw7dTe/Ai47njHBQzKKsymlpsnTHLhi66WWPXJgxEnlLdjAIaf/6qEt7/AJMGht3wbxVF3b5b6gQ/qw==",
+  "dgSpecHash": "NvclBGPv2Y+wBcjniOEkFA5CpASpctgtQTgXav3oPgEEX4LfpPfjj0u8s3a3mv1BuLlkiCBx6CgsH8kQfdUM7Q==",
   "success": true,
   "projectFilePath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.WebApi.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\5.0.4\\microsoft.entityframeworkcore.abstractions.5.0.4.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\5.0.4\\microsoft.entityframeworkcore.analyzers.5.0.4.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.design\\5.0.4\\microsoft.entityframeworkcore.design.5.0.4.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.inmemory\\5.0.4\\microsoft.entityframeworkcore.inmemory.5.0.4.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\5.0.4\\microsoft.entityframeworkcore.relational.5.0.4.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\5.0.4\\microsoft.entityframeworkcore.sqlserver.5.0.4.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\5.0.4\\microsoft.entityframeworkcore.tools.5.0.4.nupkg.sha512",

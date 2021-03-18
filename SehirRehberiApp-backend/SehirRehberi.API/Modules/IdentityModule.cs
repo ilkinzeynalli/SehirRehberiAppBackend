@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
-using SehirRehberi.DataAccess.Concrete.EntityFramework.IdentityModels;
+using SehirRehberi.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;

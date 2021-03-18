@@ -19,7 +19,6 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberi\SehirRehberi.Entitie
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.deps.json
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.csprojAssemblyReference.cache
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.AssemblyInfoInputs.cache
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.AssemblyInfo.cs
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.Entities\obj\Debug\netcoreapp3.1\SehirRehberi.Entities.csproj.CoreCompileInputs.cache

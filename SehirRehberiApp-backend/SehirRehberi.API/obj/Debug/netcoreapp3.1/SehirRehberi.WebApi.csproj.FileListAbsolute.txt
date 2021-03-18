@@ -15,6 +15,7 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
