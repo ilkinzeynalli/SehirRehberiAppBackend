@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,7 @@ namespace SehirRehberi.API
             EnableCrossModule.Load(services, CorsPolicyName);
 
             services.AddControllers()
+                    .AddFluentValidation()
                     .AddNewtonsoftJson(jsonOption =>
                     {
                         jsonOption.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -62,6 +64,9 @@ namespace SehirRehberi.API
 
             //Configure DI for app services
             LogicModule.Load(services);
+
+            //Validator configure
+            ValidatorModule.Load(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

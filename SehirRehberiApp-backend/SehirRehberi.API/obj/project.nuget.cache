@@ -1,11 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "g26lHL7mP2lFMzpd/UVba30jEOahjfrN/gKuGSDHvkhVOa6UE8ie68VxxVLQhkZPjq1FOe3G8smymXQaW7cNCA==",
+  "dgSpecHash": "JDEVDm8WSmbfJ72U1Y93szwKzhGX/MQdbbftm+3akal1AuCJwWJAn5u63ckCb5a9h4gFAPmZTkWMV4dcBPkh7w==",
   "success": true,
   "projectFilePath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.API\\SehirRehberi.WebApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation\\9.5.3\\fluentvalidation.9.5.3.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.3\\fluentvalidation.aspnetcore.9.5.3.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.3\\fluentvalidation.dependencyinjectionextensions.9.5.3.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

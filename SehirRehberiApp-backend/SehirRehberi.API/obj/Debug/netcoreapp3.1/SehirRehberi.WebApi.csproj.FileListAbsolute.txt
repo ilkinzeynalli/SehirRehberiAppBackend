@@ -77,5 +77,9 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cache
