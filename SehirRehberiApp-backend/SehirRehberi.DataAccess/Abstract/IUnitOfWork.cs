@@ -9,6 +9,9 @@ namespace SehirRehberi.DataAccess.Abstract
     {
         IValueRepository Values { get; }
         ICityRepository Cities { get; }
+        IPhotoRepository Photos { get; }
+        IAspNetUserToken AspNetUserTokens { get; }
+
         Task<int> Complete();
     }
 }

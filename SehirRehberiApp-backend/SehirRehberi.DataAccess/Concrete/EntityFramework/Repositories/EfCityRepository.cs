@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 {
@@ -17,9 +18,6 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
         }
 
         public ApplicationIdentityDbContext Context => _context as ApplicationIdentityDbContext;
-        public override IQueryable<City> GetAll(Expression<Func<City, bool>> filter = null)
-        {
-            return Context.Cities.Include(i=>i.Photos);
-        }
+
     }
 }

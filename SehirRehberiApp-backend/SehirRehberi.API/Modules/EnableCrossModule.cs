@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.WebApi.Modules
 {
-    public static class EnableCrossModule
+    internal class EnableCrossModule
     {
         public static void Load(IServiceCollection services, string name)
         {

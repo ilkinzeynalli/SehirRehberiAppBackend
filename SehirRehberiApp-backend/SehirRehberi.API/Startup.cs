@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +12,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using SehirRehberi.API.Modules;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Seeders;
+using SehirRehberi.WebApi.Mappings;
 using SehirRehberi.WebApi.Modules;
 
 namespace SehirRehberi.API
@@ -31,10 +36,14 @@ namespace SehirRehberi.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Enable Cross Module  configure 
+            //Enable Cross Module  settings 
             EnableCrossModule.Load(services, CorsPolicyName);
 
-            services.AddControllers();
+            services.AddControllers()
+                    .AddNewtonsoftJson(jsonOption =>
+                    {
+                        jsonOption.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    });
 
             //DbContext settings
             services.AddDbContext<ApplicationIdentityDbContext>(opt =>
@@ -42,8 +51,14 @@ namespace SehirRehberi.API
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"), x => x.MigrationsAssembly("SehirRehberi.DataAccess"));
             });
 
+            //Auto Mapper configuration
+            services.AddSingleton(AutoMapperConfig.CreateMapper());
+
             //Adding Identity Server
             IdentityModule.Load(services);
+
+            //JWT configuration
+            JwtModule.Load(services, Configuration);
 
             //Configure DI for app services
             LogicModule.Load(services);
@@ -57,7 +72,7 @@ namespace SehirRehberi.API
                 app.UseDeveloperExceptionPage();
 
 
-                //Seed Data configure
+                //Seed Datas
                 SeederIdentityData.EnsurePopulated(app, Configuration).Wait();
                 SeederData.EnsurePopulated(app).Wait();
             }
@@ -66,6 +81,7 @@ namespace SehirRehberi.API
 
             app.UseCors(CorsPolicyName);
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SehirRehberi.Entities.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SehirRehberi.Entities.Concrete
 {
-    public class Photo
+    public class Photo : IEntity
     {
         public int PhotoId { get; set; }
 

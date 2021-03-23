@@ -8,7 +8,9 @@ using System.Text;
 
 namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts
 {
-    public class ApplicationIdentityDbContext : IdentityDbContext<ApplicationUser,ApplicationRole,string>
+    public class ApplicationIdentityDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string,
+                                            ApplicationUserClaim, ApplicationUserRole, ApplicationUserLogin,
+                                            ApplicationRoleClaim, ApplicationUserToken>
     {
         public ApplicationIdentityDbContext(DbContextOptions<ApplicationIdentityDbContext> context) : base(context)
         {
@@ -19,6 +21,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts
         public virtual DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<ApplicationUserToken> ApplicationUserToken { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -32,6 +35,9 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts
         {
             base.OnModelCreating(builder);
 
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new ApplicationRoleConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserTokenConfiguration());
             builder.ApplyConfiguration(new CitiesConfiguration());
             builder.ApplyConfiguration(new PhotosConfiguration());
         }

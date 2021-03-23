@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.Business.Concrete
 {
-    public class IValueManager : IValueService
+    public class ValueManager : IValueService
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public IValueManager(IUnitOfWork unitOfWork)
+        public ValueManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

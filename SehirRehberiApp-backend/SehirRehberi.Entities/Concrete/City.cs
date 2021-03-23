@@ -17,6 +17,6 @@ namespace SehirRehberi.Entities.Concrete
 
         //Navigations
         public virtual ApplicationUser ApplicationUser { get; set; }
-        public ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

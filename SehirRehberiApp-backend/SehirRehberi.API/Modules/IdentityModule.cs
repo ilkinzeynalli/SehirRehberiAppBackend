@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.API.Modules
 {
-    public static class IdentityModule
+    internal class IdentityModule
     {
         public static void Load(IServiceCollection services)
         {
@@ -17,7 +17,7 @@ namespace SehirRehberi.API.Modules
             services.AddIdentity<ApplicationUser, ApplicationRole>(opt =>
                 {
                     //Identity settings
-                    opt.User.RequireUniqueEmail = true;
+                    opt.User.RequireUniqueEmail = false;
                 })
                 .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
                 .AddDefaultTokenProviders();

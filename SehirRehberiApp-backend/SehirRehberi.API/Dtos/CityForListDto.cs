@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.WebApi.Dtos
 {
-    public class CityForListDto
+    public class CityForListDTO
     {
         public int Id { get; set; }
         public string Name { get; set; }
