@@ -11,5 +11,7 @@ namespace SehirRehberi.Business.Abstract
         Task<List<City>> GetAllCitiesWithPhotos();
         Task<City> AddCity(City city);
         Task<City> GetCityById(int id);
+        Task<City> GetCityWithPhotosById(int id);
+
     }
 }

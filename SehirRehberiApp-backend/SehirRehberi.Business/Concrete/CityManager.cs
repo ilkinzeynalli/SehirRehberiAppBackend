@@ -39,5 +39,12 @@ namespace SehirRehberi.Business.Concrete
 
             return result;
         }
+
+        public async Task<City> GetCityWithPhotosById(int id)
+        {
+            var result = await _unitOfWork.Cities.GetAll(p=>p.CityId == id).Include(i => i.Photos).FirstOrDefaultAsync();
+
+            return result;
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace SehirRehberi.Business.Abstract
     public interface IPhotoService
     {
         Task<List<Photo>> GetPhotosByCityId(int cityId);
+        Task<Photo> AddPhoto(Photo photo);
+        Task<Photo> GetPhotoById(int id);
     }
 }

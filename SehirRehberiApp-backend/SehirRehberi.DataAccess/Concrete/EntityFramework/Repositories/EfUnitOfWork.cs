@@ -35,7 +35,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
             {
                 return await _context.SaveChangesAsync();
             }
-            catch
+            catch(Exception ex)
             {
                 throw new Exception("Database save ederken problem yarandi");
             }
