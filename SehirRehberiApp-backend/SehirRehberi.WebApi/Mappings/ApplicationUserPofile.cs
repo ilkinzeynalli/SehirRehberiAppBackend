@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SehirRehberi.Entities.Concrete;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +12,7 @@ namespace SehirRehberi.WebApi.Mappings
     {
         public ApplicationUserPofile()
         {
-            CreateMap<UserForRegisterDTO,ApplicationUser>();
-
+            CreateMap<UserForRegisterDto,ApplicationUser>();
         }
     }
 }

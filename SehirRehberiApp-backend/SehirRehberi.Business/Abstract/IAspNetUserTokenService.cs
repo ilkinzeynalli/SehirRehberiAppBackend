@@ -1,4 +1,5 @@
-﻿using SehirRehberi.Entities.Concrete;
+﻿using SehirRehberi.Core.Utilities.Results;
+using SehirRehberi.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,9 @@ namespace SehirRehberi.Business.Abstract
 {
     public interface IAspNetUserTokenService
     {
-        Task<ApplicationUserToken> AddToken(ApplicationUserToken token);
-        Task<List<ApplicationUserToken>> GetTokensByUserId(string userId);
-        Task RemoveToken(ApplicationUserToken token);
-        Task<ApplicationUserToken> UpdateToken(ApplicationUserToken token);
+        Task<IDataResult<ApplicationUserToken>> AddToken(ApplicationUserToken token);
+        Task<IDataResult<List<ApplicationUserToken>>> GetTokensByUserId(string userId);
+        Task<IResult> RemoveToken(ApplicationUserToken token);
+        Task<IDataResult<ApplicationUserToken>> UpdateToken(ApplicationUserToken token);
     }
 }

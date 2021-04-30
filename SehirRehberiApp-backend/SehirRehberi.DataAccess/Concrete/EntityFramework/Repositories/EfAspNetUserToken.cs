@@ -1,4 +1,5 @@
-﻿using SehirRehberi.DataAccess.Abstract;
+﻿using SehirRehberi.Core.DataAccess.EntityFramework;
+using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.Entities.Concrete;
 using System;

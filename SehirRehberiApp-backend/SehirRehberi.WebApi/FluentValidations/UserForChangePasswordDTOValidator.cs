@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.WebApi.FluentValidations
 {
-    public class UserForChangePasswordDTOValidator : AbstractValidator<UserForChangePasswordDTO>
+    public class UserForChangePasswordDtoValidator : AbstractValidator<UserForChangePasswordDto>
     {
-        public UserForChangePasswordDTOValidator()
+        public UserForChangePasswordDtoValidator()
         {
             RuleFor(r => r.UserId).NotEmpty().WithMessage("User id daxil edin");
             RuleFor(r => r.UserId).NotNull().WithMessage("User id null ola bilmez");

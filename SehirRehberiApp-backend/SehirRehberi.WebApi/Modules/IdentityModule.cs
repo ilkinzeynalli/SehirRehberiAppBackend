@@ -18,6 +18,11 @@ namespace SehirRehberi.API.Modules
                 {
                     //Identity settings
                     opt.User.RequireUniqueEmail = false;
+                    opt.Password.RequireNonAlphanumeric = false;
+                    opt.Password.RequireDigit = false;
+                    opt.Password.RequireUppercase = false;
+                    opt.Password.RequireLowercase = false;
+                    opt.Password.RequiredLength = 5;
                 })
                 .AddEntityFrameworkStores<ApplicationIdentityDbContext>()
                 .AddDefaultTokenProviders();

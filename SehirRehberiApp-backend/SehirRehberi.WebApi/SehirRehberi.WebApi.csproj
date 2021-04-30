@@ -17,12 +17,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="NLog.Web.AspNetCore" Version="4.11.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SehirRehberi.Business\SehirRehberi.Business.csproj" />
+    <ProjectReference Include="..\SehirRehberi.Core\SehirRehberi.Core.csproj" />
     <ProjectReference Include="..\SehirRehberi.DataAccess\SehirRehberi.DataAccess.csproj" />
     <ProjectReference Include="..\SehirRehberi.Entities\SehirRehberi.Entities.csproj" />
   </ItemGroup>

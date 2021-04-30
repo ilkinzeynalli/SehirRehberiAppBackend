@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SehirRehberi.Entities.Concrete;
-using SehirRehberi.WebApi.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

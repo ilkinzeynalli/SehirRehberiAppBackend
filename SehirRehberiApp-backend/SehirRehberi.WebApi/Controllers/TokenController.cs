@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Core.Extensions;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
+using SehirRehberi.Entities.DTOs;
 using SehirRehberi.WebApi.Attributes;
-using SehirRehberi.WebApi.Dtos;
-using SehirRehberi.WebApi.Extensions;
 using SehirRehberi.WebApi.Models;
 using SehirRehberi.WebApi.Services.Abstract;
 
@@ -35,7 +35,7 @@ namespace SehirRehberi.WebApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("refresh")]
-        public async Task<IActionResult> Refresh([FromBody] TokensForRefreshDTO model)
+        public async Task<IActionResult> Refresh([FromBody] TokensForRefreshDto model)
         {
             var principal = _tokenService.GetPrincipalFromExpiredToken(model.AccessToken);
             var userName = principal.Identity.Name; //this is mapped to the Name claim by default
@@ -48,26 +48,32 @@ namespace SehirRehberi.WebApi.Controllers
 
             var existTokens = await _aspNetUserTokenService.GetTokensByUserId(user.Id);
 
-            var existAccessToken = existTokens.FirstOrDefault(f => f.Name == TokenTypes.AccessToken);
-            var existRefreshToken = existTokens.FirstOrDefault(f => f.Name == TokenTypes.RefreshToken);
+            if (existTokens.Success)
+            {
 
-            if (user == null || existRefreshToken.Value != model.RefreshToken || existRefreshToken.ExpireDate <= DateTime.Now)
-                return Unauthorized("Refresh token expired");
+                var existAccessToken = existTokens.Data.FirstOrDefault(f => f.Name == TokenTypes.AccessToken);
+                var existRefreshToken = existTokens.Data.FirstOrDefault(f => f.Name == TokenTypes.RefreshToken);
+
+                if (user == null || existRefreshToken.Value != model.RefreshToken || existRefreshToken.ExpireDate <= DateTime.Now)
+                    return Unauthorized("Refresh token expired");
 
 
-            var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);
-            var newRefreshToken = _tokenService.GenerateRefreshToken();
+                var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);
+                var newRefreshToken = _tokenService.GenerateRefreshToken();
 
-            existAccessToken.Value = _tokenService.GenerateAccessToken(principal.Claims);
-            existAccessToken.ExpireDate = new JwtSecurityToken(newAccessToken).ValidTo.ConvertUtcToLocalTime();
+                existAccessToken.Value = _tokenService.GenerateAccessToken(principal.Claims);
+                existAccessToken.ExpireDate = new JwtSecurityToken(newAccessToken).ValidTo.ConvertUtcToLocalTime();
 
-            existRefreshToken.Value = newRefreshToken;
-            existRefreshToken.ExpireDate = DateTime.Now.AddMinutes(5);
+                existRefreshToken.Value = newRefreshToken;
+                existRefreshToken.ExpireDate = DateTime.Now.AddMinutes(5);
 
-            await _aspNetUserTokenService.UpdateToken(existAccessToken);
-            await _aspNetUserTokenService.UpdateToken(existRefreshToken);
+                await _aspNetUserTokenService.UpdateToken(existAccessToken);
+                await _aspNetUserTokenService.UpdateToken(existRefreshToken);
 
-            return Ok(new{ newAccessToken, newRefreshToken });
+                return Ok(new { newAccessToken, newRefreshToken });
+            }
+
+            return BadRequest(existTokens.Message);
 
         }
 
@@ -92,10 +98,10 @@ namespace SehirRehberi.WebApi.Controllers
             //Exist tokens find
             var existTokens = await _aspNetUserTokenService.GetTokensByUserId(user.Id);
 
-            if (existTokens.Count == 0)
+            if (existTokens.Data.Count == 0)
                 return NotFound("Tokens not found");
 
-            foreach (var existToken in existTokens)
+            foreach (var existToken in existTokens.Data)
             {
                 existToken.Value = null;
                 existToken.ExpireDate = new DateTime(1900, 1, 1);

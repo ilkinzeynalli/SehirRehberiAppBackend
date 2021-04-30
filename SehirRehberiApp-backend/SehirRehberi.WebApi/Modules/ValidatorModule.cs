@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using SehirRehberi.WebApi.FluentValidations;
 using System;
 using System.Collections.Generic;
@@ -13,10 +13,10 @@ namespace SehirRehberi.WebApi.Modules
     {
         public static void Load(IServiceCollection services)
         {
-            services.AddTransient<IValidator<UserForLoginDTO>, UserForLoginDTOValidator>();
-            services.AddTransient<IValidator<UserForRegisterDTO>, UserForRegisterDTOValidator>();
-            services.AddTransient<IValidator<UserForChangePasswordDTO>, UserForChangePasswordDTOValidator>();
-            services.AddTransient<IValidator<TokensForRefreshDTO>, TokensForRefreshDTOValidator>();
+            services.AddTransient<IValidator<UserForLoginDto>, UserForLoginDtoValidator>();
+            services.AddTransient<IValidator<UserForRegisterDto>, UserForRegisterDtoValidator>();
+            services.AddTransient<IValidator<UserForChangePasswordDto>, UserForChangePasswordDtoValidator>();
+            services.AddTransient<IValidator<TokensForRefreshDto>, TokensForRefreshDtoValidator>();
         }
     }
 }

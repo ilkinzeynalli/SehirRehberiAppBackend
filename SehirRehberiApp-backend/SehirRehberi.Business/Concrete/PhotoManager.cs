@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
 using System;
@@ -12,27 +14,56 @@ namespace SehirRehberi.Business.Concrete
     public class PhotoManager : IPhotoService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public PhotoManager(IUnitOfWork unitOfWork)
+        private readonly ILogger<PhotoManager> _logger;
+
+        public PhotoManager(IUnitOfWork unitOfWork, ILogger<PhotoManager> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
-        public async Task<Photo> AddPhoto(Photo photo)
+        public async Task<IDataResult<Photo>> AddPhoto(Photo photo)
         {
-            _unitOfWork.Photos.Add(photo);
-            await _unitOfWork.Complete();
+            try
+            {
+                _unitOfWork.Photos.Add(photo);
+                await _unitOfWork.Complete();
 
-            return photo;
+                return new SuccessDataResult<Photo>(photo);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
+
         }
 
-        public async Task<Photo> GetPhotoById(int id)
+        public async Task<IDataResult<Photo>> GetPhotoById(int id)
         {
-           return await _unitOfWork.Photos.GetEntityById(id);
+            try
+            {
+                return new SuccessDataResult<Photo>(await _unitOfWork.Photos.GetEntityById(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
 
-        public async Task<List<Photo>> GetPhotosByCityId(int cityId)
+        public async Task<IDataResult<List<Photo>>> GetPhotosByCityId(int cityId)
         {
-            return await _unitOfWork.Photos.GetAll(p => p.CityId == cityId).Include(i => i.City).ToListAsync();
+            try
+            {
+                var result = await _unitOfWork.Photos.GetAll(p => p.CityId == cityId).Include(i => i.City).ToListAsync();
+                return new SuccessDataResult<List<Photo>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
     }
 }

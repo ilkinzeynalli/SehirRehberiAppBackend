@@ -1,4 +1,4 @@
-﻿using SehirRehberi.Entities.Abstract;
+﻿using SehirRehberi.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

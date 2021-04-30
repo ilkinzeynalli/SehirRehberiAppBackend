@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SehirRehberi.Entities.Concrete;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace SehirRehberi.WebApi.Mappings
     {
         public CityProfile()
         {
-            CreateMap<City, CityForListDTO>()
+            CreateMap<City, CityForListDto>()
                 .ForMember(dest => dest.Id, opt =>
                 {
                     opt.MapFrom(src => src.CityId);
@@ -30,7 +30,7 @@ namespace SehirRehberi.WebApi.Mappings
                     opt.MapFrom(src => src.CityDescription);
                 });
 
-            CreateMap<City, CityForDetailDTO>();
+            CreateMap<City, CityForDetailDto>();
         }
     }
 }

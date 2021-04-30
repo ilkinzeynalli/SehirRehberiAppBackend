@@ -60,12 +60,12 @@ namespace SehirRehberi.API.Controllers
         {
             var result = await _valueService.GetValueById(id);
 
-            if (result == null)
+            if (result.Data == null)
             {
                 return NotFound();
             }
 
-            return Ok(await _valueService.DeleteValue(result));
+            return Ok(await _valueService.DeleteValue(result.Data));
         }
     }
 }

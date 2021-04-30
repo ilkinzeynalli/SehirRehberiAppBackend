@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SehirRehberi.Entities.Abstract;
+using SehirRehberi.Core.Entities;
 using SehirRehberi.Entities.Concrete;
 using System;
 using System.Collections.Generic;

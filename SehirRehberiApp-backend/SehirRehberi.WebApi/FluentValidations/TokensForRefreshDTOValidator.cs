@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.WebApi.FluentValidations
 {
-    public class TokensForRefreshDTOValidator : AbstractValidator<TokensForRefreshDTO>
+    public class TokensForRefreshDtoValidator : AbstractValidator<TokensForRefreshDto>
     {
-        public TokensForRefreshDTOValidator()
+        public TokensForRefreshDtoValidator()
         {
             RuleFor(r => r.AccessToken).NotEmpty().WithMessage("Tokeni daxil edin");
             RuleFor(r => r.AccessToken).NotNull().WithMessage("Token null ola bilmez");

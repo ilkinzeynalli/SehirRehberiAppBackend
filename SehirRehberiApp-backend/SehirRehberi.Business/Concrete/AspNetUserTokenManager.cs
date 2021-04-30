@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
 using System;
@@ -12,36 +14,75 @@ namespace SehirRehberi.Business.Concrete
     public class AspNetUserTokenManager : IAspNetUserTokenService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public AspNetUserTokenManager(IUnitOfWork unitOfWork)
+        private readonly ILogger<AspNetUserTokenManager> _logger;
+        public AspNetUserTokenManager(IUnitOfWork unitOfWork, ILogger<AspNetUserTokenManager> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
-        public async Task<ApplicationUserToken> AddToken(ApplicationUserToken token)
+        public async Task<IDataResult<ApplicationUserToken>> AddToken(ApplicationUserToken token)
         {
-            _unitOfWork.AspNetUserTokens.Add(token);
-            await _unitOfWork.Complete();
+            try
+            {
+                _unitOfWork.AspNetUserTokens.Add(token);
+                await _unitOfWork.Complete();
 
-            return token;
+                return new SuccessDataResult<ApplicationUserToken>(token);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
+
         }
 
-        public async Task<List<ApplicationUserToken>> GetTokensByUserId(string userId)
+        public async Task<IDataResult<List<ApplicationUserToken>>> GetTokensByUserId(string userId)
         {
-            var result = await _unitOfWork.AspNetUserTokens.GetAll(p=>p.UserId == userId).ToListAsync();
-            return result;
+            try
+            {
+                var result = await _unitOfWork.AspNetUserTokens.GetAll(p => p.UserId == userId).ToListAsync();
+
+                return new SuccessDataResult<List<ApplicationUserToken>>(result);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
+            
         }
 
-        public async Task RemoveToken(ApplicationUserToken token)
+        public async Task<IResult> RemoveToken(ApplicationUserToken token)
         {
-            _unitOfWork.AspNetUserTokens.Delete(token);
-            await _unitOfWork.Complete();
+            try
+            {
+                _unitOfWork.AspNetUserTokens.Delete(token);
+                await _unitOfWork.Complete();
+
+                return new SuccessResult();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
-
-        public async Task<ApplicationUserToken> UpdateToken(ApplicationUserToken token)
+        public async Task<IDataResult<ApplicationUserToken>> UpdateToken(ApplicationUserToken token)
         {
-            _unitOfWork.AspNetUserTokens.Update(token);
-            await _unitOfWork.Complete();
+            try
+            {
+                _unitOfWork.AspNetUserTokens.Update(token);
+                await _unitOfWork.Complete();
 
-            return token;
+                return new SuccessDataResult<ApplicationUserToken>(token);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
     }
 }

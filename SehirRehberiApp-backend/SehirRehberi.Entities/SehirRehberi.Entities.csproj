@@ -9,4 +9,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstract\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SehirRehberi.Core\SehirRehberi.Core.csproj" />
+  </ItemGroup>
+
 </Project>

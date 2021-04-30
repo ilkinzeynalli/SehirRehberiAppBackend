@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore;
 using SehirRehberi.Business.Abstract;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
+using SehirRehberi.Entities.DTOs;
 using SehirRehberi.WebApi.Attributes;
-using SehirRehberi.WebApi.Dtos;
 using SehirRehberi.WebApi.Models;
 
 namespace SehirRehberi.WebApi.Controllers
 {
     [ApiRoutePrefix("cities")]
-    [AuthorizeRoles(Roles.User)]
+    [AuthorizeRoles(RoleTypes.Admin)]
     [ApiController]
     public class CitiesController : ControllerBase
     {
@@ -26,7 +26,7 @@ namespace SehirRehberi.WebApi.Controllers
 
         private readonly IMapper _mapper;
         public CitiesController(IMapper mapper,
-                                ICityService cityService, 
+                                ICityService cityService,
                                 IPhotoService photoService)
         {
             _cityService = cityService;
@@ -36,24 +36,32 @@ namespace SehirRehberi.WebApi.Controllers
 
         [HttpGet]
         [Route("getAllCities")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllCities()
         {
-            var cities = await _cityService.GetAllCitiesWithPhotos();
 
-            var result = _mapper.Map<List<CityForListDTO>>(cities);
+            var result = await _cityService.GetAllCitiesWithPhotos();
 
-            return Ok(result);
+            if (result.Success)
+            {
+                return Ok(_mapper.Map<List<CityForListDto>>(result.Data));
+            }
+
+            return BadRequest(result.Message);
         }
 
         [HttpGet]
         [Route("getCityById/{id}")]
         public async Task<IActionResult> GetCityById(int id)
         {
-            var city = await _cityService.GetCityById(id);
+            var result = await _cityService.GetCityById(id);
 
-            var result = _mapper.Map<CityForDetailDTO>(city);
+            if (result.Success)
+            {
+                return Ok(_mapper.Map<CityForDetailDto>(result.Data));
+            }
 
-            return Ok(result);
+            return BadRequest(result.Message);
         }
 
         [HttpGet]
@@ -62,7 +70,12 @@ namespace SehirRehberi.WebApi.Controllers
         {
             var result = await _photoService.GetPhotosByCityId(cityId);
 
-            return Ok(result);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
         }
 
         [HttpPost]
@@ -70,9 +83,16 @@ namespace SehirRehberi.WebApi.Controllers
         public async Task<IActionResult> AddCity([FromBody] City city)
         {
             var result = await _cityService.AddCity(city);
-            return Ok(result);
+
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+
+            return BadRequest(result.Message);
+
         }
 
-        
+
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KXLlmKpJCgyqIjb6qTdEc/ZT6gZiSsDAMyfKh/ScaPZuhe/rbIwhlIfRJ2ITEekGr1aWeeHistuUl0kPpYI22Q==",
+  "dgSpecHash": "WRXNFf2280LJfE64oeQYiMRv764RYtuxGzL/dHVmQnw3Owi1oKm98KvTn8js2c9ET4IwEqU2R23IqCn6cXNv3Q==",
   "success": true,
   "projectFilePath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.Business\\SehirRehberi.Business.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,9 @@
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\nlog\\4.7.8\\nlog.4.7.8.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\nlog.extensions.logging\\1.7.1\\nlog.extensions.logging.1.7.1.nupkg.sha512",
+    "C:\\Users\\hp\\.nuget\\packages\\nlog.web.aspnetcore\\4.11.0\\nlog.web.aspnetcore.4.11.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

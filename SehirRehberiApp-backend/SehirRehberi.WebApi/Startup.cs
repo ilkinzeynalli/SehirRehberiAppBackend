@@ -1,19 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using NLog;
 using SehirRehberi.API.Modules;
@@ -57,10 +53,6 @@ namespace SehirRehberi.API
                 opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString"), x => x.MigrationsAssembly("SehirRehberi.DataAccess"));
             });
 
-
-            //Set connectionString variable for NLog 
-            GlobalDiagnosticsContext.Set("connectionString", Configuration.GetConnectionString("DefaultConnectionString"));
-
             //Cloudinary Settings
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
 
@@ -96,7 +88,6 @@ namespace SehirRehberi.API
             app.UseRouting();
 
             app.UseCors(CorsPolicyName);
-
             app.UseAuthentication();
             app.UseAuthorization();
 

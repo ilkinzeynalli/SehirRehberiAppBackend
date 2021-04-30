@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Business.Constants;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
 using System;
@@ -13,38 +16,72 @@ namespace SehirRehberi.Business.Concrete
     public class CityManager : ICityService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ILogger<CityManager> _logger;
 
-        public CityManager(IUnitOfWork unitOfWork)
+        public CityManager(IUnitOfWork unitOfWork, ILogger<CityManager> logger)
         {
             _unitOfWork = unitOfWork;
+            _logger = logger;
         }
 
-        public async Task<City> AddCity(City city)
+        public async Task<IDataResult<City>> AddCity(City city)
         {
-            _unitOfWork.Cities.Add(city);
-            await _unitOfWork.Complete();
+            try
+            {
+                _unitOfWork.Cities.Add(city);
+                await _unitOfWork.Complete();
 
-            return city;
+                return new SuccessDataResult<City>(city);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
 
-        public async Task<List<City>> GetAllCitiesWithPhotos()
+        public async Task<IDataResult<List<City>>> GetAllCitiesWithPhotos()
         {
-            var result = await _unitOfWork.Cities.GetAll().Include(i=>i.Photos).ToListAsync();
+            try
+            {
+                var result = await _unitOfWork.Cities.GetAll().Include(i => i.Photos).ToListAsync();
 
-            return result;
+                return new SuccessDataResult<List<City>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
-        public async Task<City> GetCityById(int id)
+        public async Task<IDataResult<City>> GetCityById(int id)
         {
-           var result =  await _unitOfWork.Cities.GetEntityById(id);
+            try
+            {
+                var result = await _unitOfWork.Cities.GetEntityById(id);
 
-            return result;
+                return new SuccessDataResult<City>(result,Messages.CityDetail);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
 
-        public async Task<City> GetCityWithPhotosById(int id)
+        public async Task<IDataResult<City>> GetCityWithPhotosById(int id)
         {
-            var result = await _unitOfWork.Cities.GetAll(p=>p.CityId == id).Include(i => i.Photos).FirstOrDefaultAsync();
+            try
+            {
+                var result = await _unitOfWork.Cities.GetAll(p => p.CityId == id).Include(i => i.Photos).FirstOrDefaultAsync();
 
-            return result;
+                return new SuccessDataResult<City>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message ?? ex.InnerException.Message);
+                throw ex;
+            }
         }
     }
 }

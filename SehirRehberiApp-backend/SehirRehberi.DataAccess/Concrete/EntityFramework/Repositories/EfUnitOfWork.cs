@@ -9,7 +9,7 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 {
     public class EfUnitOfWork : IUnitOfWork
     {
-        private ApplicationIdentityDbContext _context;
+        private readonly ApplicationIdentityDbContext _context;
 
         public EfUnitOfWork(ApplicationIdentityDbContext context)
         {

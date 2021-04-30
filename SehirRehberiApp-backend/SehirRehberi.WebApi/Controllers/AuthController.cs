@@ -11,21 +11,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NLog;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Core.Extensions;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.Entities.Concrete;
+using SehirRehberi.Entities.DTOs;
 using SehirRehberi.WebApi.Attributes;
-using SehirRehberi.WebApi.Dtos;
-using SehirRehberi.WebApi.Extensions;
 using SehirRehberi.WebApi.Models;
 using SehirRehberi.WebApi.Services.Abstract;
 
 namespace SehirRehberi.WebApi.Controllers
 {
-    [ApiRoutePrefix("authorize")]
+    [ApiRoutePrefix("auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly ILogger<AuthController> _logger;
         private readonly IMapper _mapper;
 
         private readonly UserManager<ApplicationUser> _userManager;
@@ -41,11 +40,9 @@ namespace SehirRehberi.WebApi.Controllers
                               RoleManager<ApplicationRole> roleManager,
                               SignInManager<ApplicationUser> signInManager,
                               ITokenService tokenService,
-                              IAspNetUserTokenService aspNetUserTokenSerice,
-                              ILogger<AuthController> logger)
+                              IAspNetUserTokenService aspNetUserTokenSerice)
         {
             _mapper = mapper;
-            _logger = logger;
 
             _userManager = userManager;
             _roleManager = roleManager;
@@ -58,10 +55,8 @@ namespace SehirRehberi.WebApi.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] UserForLoginDTO userForLoginDTO)
+        public async Task<IActionResult> Login([FromBody] UserForLoginDto userForLoginDTO)
         {
-            _logger.LogError("login");
-
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(userForLoginDTO.UserName);
@@ -82,6 +77,8 @@ namespace SehirRehberi.WebApi.Controllers
                         {
                             new Claim(ClaimTypes.NameIdentifier,user.Id),
                             new Claim(ClaimTypes.Name, user.UserName),
+                            new Claim("userId", user.Id),
+                            new Claim("userName", user.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                         };
 
@@ -93,9 +90,9 @@ namespace SehirRehberi.WebApi.Controllers
                         #region Token Check and Assign In DB
 
                         var existTokens = await _aspNetUserTokenSerice.GetTokensByUserId(user.Id);
-                        if (existTokens.Count > 0)
+                        if (existTokens.Data.Count > 0)
                         {
-                            foreach (var removedToken in existTokens)
+                            foreach (var removedToken in existTokens.Data)
                                 await _aspNetUserTokenSerice.RemoveToken(removedToken);
                         }
 
@@ -153,7 +150,7 @@ namespace SehirRehberi.WebApi.Controllers
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] UserForRegisterDTO userForRegisterDTO)
+        public async Task<IActionResult> Register([FromBody] UserForRegisterDto userForRegisterDTO)
         {
             if (ModelState.IsValid)
             {
@@ -167,11 +164,11 @@ namespace SehirRehberi.WebApi.Controllers
                 if (!result.Succeeded)
                     return StatusCode(500, new { Message = result.Errors.Select(s => s.Description).FirstOrDefault() });
 
-                if (!await _roleManager.RoleExistsAsync(Roles.User))
-                    await _roleManager.CreateAsync(new ApplicationRole() { Name = Roles.User });
+                if (!await _roleManager.RoleExistsAsync(RoleTypes.User))
+                    await _roleManager.CreateAsync(new ApplicationRole() { Name = RoleTypes.User });
 
-                if (await _roleManager.RoleExistsAsync(Roles.User))
-                    await _userManager.AddToRoleAsync(createForUser, Roles.User);
+                if (await _roleManager.RoleExistsAsync(RoleTypes.User))
+                    await _userManager.AddToRoleAsync(createForUser, RoleTypes.User);
 
                 return StatusCode(201);
             }
@@ -181,7 +178,7 @@ namespace SehirRehberi.WebApi.Controllers
 
         [HttpPut]
         [Route("changePassword")]
-        public async Task<IActionResult> ChangePassword([FromBody] UserForChangePasswordDTO userForChangePasswordDTO)
+        public async Task<IActionResult> ChangePassword([FromBody] UserForChangePasswordDto userForChangePasswordDTO)
         {
             var user = await _userManager.FindByIdAsync(userForChangePasswordDTO.UserId);
 

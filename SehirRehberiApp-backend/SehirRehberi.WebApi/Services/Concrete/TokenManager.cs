@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using SehirRehberi.WebApi.Extensions;
+using SehirRehberi.Core.Extensions;
 using SehirRehberi.WebApi.Modules;
 using SehirRehberi.WebApi.Services.Abstract;
 using System;

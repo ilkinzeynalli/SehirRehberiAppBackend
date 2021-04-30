@@ -22,3 +22,6 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.DataAccess\obj\Release\netcoreapp3.1\SehirRehberi.DataAccess.csproj.CopyComplete
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.DataAccess\obj\Release\netcoreapp3.1\SehirRehberi.DataAccess.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.DataAccess\obj\Release\netcoreapp3.1\SehirRehberi.DataAccess.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.DataAccess\bin\Release\netcoreapp3.1\SehirRehberi.DataAccess.runtimeconfig.json
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.DataAccess\bin\Release\netcoreapp3.1\SehirRehberi.DataAccess.runtimeconfig.dev.json
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.DataAccess\obj\Release\netcoreapp3.1\SehirRehberi.DataAccess.genruntimeconfig.cache

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SehirRehberi.Core\SehirRehberi.Core.csproj" />
     <ProjectReference Include="..\SehirRehberi.DataAccess\SehirRehberi.DataAccess.csproj" />
     <ProjectReference Include="..\SehirRehberi.Entities\SehirRehberi.Entities.csproj" />
   </ItemGroup>

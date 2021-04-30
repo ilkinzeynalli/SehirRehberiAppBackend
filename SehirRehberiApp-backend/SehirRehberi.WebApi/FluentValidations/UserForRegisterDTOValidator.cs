@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.WebApi.FluentValidations
 {
-    public class UserForRegisterDTOValidator : AbstractValidator<UserForRegisterDTO>
+    public class UserForRegisterDtoValidator : AbstractValidator<UserForRegisterDto>
     {
-        public UserForRegisterDTOValidator()
+        public UserForRegisterDtoValidator()
         {
             RuleFor(r => r.UserName).NotEmpty().WithMessage("User name daxil edin");
             RuleFor(r => r.UserName).NotNull().WithMessage("User name null ola bilmez");

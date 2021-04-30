@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using SehirRehberi.Entities.Concrete;
-using SehirRehberi.WebApi.Dtos;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,10 @@ namespace SehirRehberi.WebApi.Mappings
     {
         public PhotoProfile()
         {
-            CreateMap<PhotoForCreationDTO, Photo>()
+            CreateMap<PhotoForCreationDto, Photo>()
                 .ForMember(dest=>dest.PhotoUrl,option => option.MapFrom(src => src.Url) );
 
-            CreateMap<Photo, PhotoForReturnDTO>()
+            CreateMap<Photo, PhotoForReturnDto>()
                 .ForMember(dest => dest.Url, option => option.MapFrom(src => src.PhotoUrl)); ;
         }
     }

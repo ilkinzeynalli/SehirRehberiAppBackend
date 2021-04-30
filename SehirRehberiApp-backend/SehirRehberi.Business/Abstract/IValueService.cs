@@ -1,4 +1,5 @@
-﻿using SehirRehberi.Entities.Concrete;
+﻿using SehirRehberi.Core.Utilities.Results;
+using SehirRehberi.Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +9,11 @@ namespace SehirRehberi.Business.Abstract
 {
     public interface IValueService
     {
-        Task<List<Value>> GetAllValues();
-        Task<Value> GetValueById(int id);
-        Task<Value> UpdateValue(Value value);
-        Task<Value> AddValue(Value value);
-        Task<int> DeleteValue(Value value);
+        Task<IDataResult<List<Value>>> GetAllValues();
+        Task<IDataResult<Value>> GetValueById(int id);
+        Task<IDataResult<Value>> UpdateValue(Value value);
+        Task<IResult> AddValue(Value value);
+        Task<IDataResult<int>> DeleteValue(Value value);
 
     }
 }

@@ -2021,6 +2021,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "SehirRehberi.Core": "1.0.0",
           "SehirRehberi.DataAccess": "1.0.0",
           "SehirRehberi.Entities": "1.0.0"
         },
@@ -2029,7 +2030,27 @@
         },
         "runtime": {
           "bin/placeholder/SehirRehberi.Business.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "SehirRehberi.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.4",
+          "NLog.Web.AspNetCore": "4.11.0"
+        },
+        "compile": {
+          "bin/placeholder/SehirRehberi.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SehirRehberi.Core.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "SehirRehberi.DataAccess/1.0.0": {
         "type": "project",
@@ -2048,21 +2069,28 @@
         },
         "runtime": {
           "bin/placeholder/SehirRehberi.DataAccess.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "SehirRehberi.Entities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Identity": "2.2.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.4"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.4",
+          "SehirRehberi.Core": "1.0.0"
         },
         "compile": {
           "bin/placeholder/SehirRehberi.Entities.dll": {}
         },
         "runtime": {
           "bin/placeholder/SehirRehberi.Entities.dll": {}
-        }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -6923,6 +6951,11 @@
       "path": "../SehirRehberi.Business/SehirRehberi.Business.csproj",
       "msbuildProject": "../SehirRehberi.Business/SehirRehberi.Business.csproj"
     },
+    "SehirRehberi.Core/1.0.0": {
+      "type": "project",
+      "path": "../SehirRehberi.Core/SehirRehberi.Core.csproj",
+      "msbuildProject": "../SehirRehberi.Core/SehirRehberi.Core.csproj"
+    },
     "SehirRehberi.DataAccess/1.0.0": {
       "type": "project",
       "path": "../SehirRehberi.DataAccess/SehirRehberi.DataAccess.csproj",
@@ -6943,9 +6976,9 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.0",
       "Microsoft.AspNetCore.Mvc.NewtonsoftJson >= 3.1.13",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.4",
-      "NLog.Web.AspNetCore >= 4.11.0",
       "Newtonsoft.Json >= 12.0.3",
       "SehirRehberi.Business >= 1.0.0",
+      "SehirRehberi.Core >= 1.0.0",
       "SehirRehberi.DataAccess >= 1.0.0",
       "SehirRehberi.Entities >= 1.0.0",
       "System.Data.SqlClient >= 4.8.2"
@@ -6979,6 +7012,9 @@
           "projectReferences": {
             "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.Business\\SehirRehberi.Business.csproj": {
               "projectPath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.Business\\SehirRehberi.Business.csproj"
+            },
+            "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.Core\\SehirRehberi.Core.csproj": {
+              "projectPath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.Core\\SehirRehberi.Core.csproj"
             },
             "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.DataAccess\\SehirRehberi.DataAccess.csproj": {
               "projectPath": "C:\\Tutorials\\Examples\\Single Page App Examples\\SehirRehberiApp\\SehirRehberiApp-backend\\SehirRehberi.DataAccess\\SehirRehberi.DataAccess.csproj"
@@ -7028,10 +7064,6 @@
             "target": "Package",
             "version": "[5.0.4, )"
           },
-          "NLog.Web.AspNetCore": {
-            "target": "Package",
-            "version": "[4.11.0, )"
-          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[12.0.3, )"
@@ -7059,7 +7091,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.407\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.408\\RuntimeIdentifierGraph.json"
       }
     }
   }
