@@ -16,13 +16,13 @@ namespace SehirRehberi.API.Modules
     {
         public static void Load(IServiceCollection services)
         {
-            services.AddSingleton<IUnitOfWork, EfUnitOfWork>();
+            services.AddTransient<IUnitOfWork, EfUnitOfWork>();
 
-            services.AddScoped<IValueService, ValueManager>();
-            services.AddScoped<ICityService, CityManager>();
-            services.AddScoped<IPhotoService, PhotoManager>();
-            services.AddScoped<ITokenService, TokenManager>();
-            services.AddScoped<IAspNetUserTokenService, AspNetUserTokenManager>();
+            services.AddTransient<IValueService, ValueManager>();
+            services.AddTransient<ICityService, CityManager>();
+            services.AddTransient<IPhotoService, PhotoManager>();
+            services.AddTransient<ITokenService, TokenManager>();
+            services.AddTransient<IAspNetUserTokenService, AspNetUserTokenManager>();
 
         }
     }

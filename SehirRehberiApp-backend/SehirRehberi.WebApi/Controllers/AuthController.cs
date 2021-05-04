@@ -11,7 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NLog;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Business.Constants;
 using SehirRehberi.Core.Extensions;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.Entities.Concrete;
 using SehirRehberi.Entities.DTOs;
@@ -25,6 +27,7 @@ namespace SehirRehberi.WebApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+       
         private readonly IMapper _mapper;
 
         private readonly UserManager<ApplicationUser> _userManager;
@@ -90,7 +93,7 @@ namespace SehirRehberi.WebApi.Controllers
                         #region Token Check and Assign In DB
 
                         var existTokens = await _aspNetUserTokenSerice.GetTokensByUserId(user.Id);
-                        if (existTokens.Data.Count > 0)
+                        if (existTokens.Success && existTokens.Data.Count > 0)
                         {
                             foreach (var removedToken in existTokens.Data)
                                 await _aspNetUserTokenSerice.RemoveToken(removedToken);
@@ -99,18 +102,24 @@ namespace SehirRehberi.WebApi.Controllers
                         var accessToken = _tokenService.GenerateAccessToken(claims);
                         var accessTokeExpireDate = new JwtSecurityToken(accessToken).ValidTo.ConvertUtcToLocalTime();
                         var refreshToken = _tokenService.GenerateRefreshToken();
-                        var refreshTokenExpireDate = DateTime.Now.AddMinutes(5);
+                        var refreshTokenExpireDate = DateTime.Now.AddMinutes(2);
 
-                        await _aspNetUserTokenSerice.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.AccessToken, Value = accessToken, ExpireDate = accessTokeExpireDate });
-                        await _aspNetUserTokenSerice.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.RefreshToken, Value = refreshToken, ExpireDate = refreshTokenExpireDate });
+                        var resultForAccessToken = await _aspNetUserTokenSerice.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.AccessToken, Value = accessToken, ExpireDate = accessTokeExpireDate });
+                        var resultForRefreshToken = await _aspNetUserTokenSerice.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.RefreshToken, Value = refreshToken, ExpireDate = refreshTokenExpireDate });
 
                         #endregion
 
-                        return Ok(new
+                        if (resultForAccessToken.Success && resultForAccessToken.Success)
                         {
-                            Token = accessToken,
-                            RefreshToken = refreshToken
-                        });
+                            var tokens = new TokensForRefreshDto
+                            {
+                                AccessToken = resultForAccessToken.Data,
+                                RefreshToken = resultForRefreshToken.Data
+                            };
+                            return Ok(new SuccessDataResult<TokensForRefreshDto>(tokens,Messages.TokenProvided));
+                        }
+                        else
+                            return BadRequest(new ErrorResult(Messages.TokenNotProvided));
                     }
                     else
                     {
@@ -138,14 +147,14 @@ namespace SehirRehberi.WebApi.Controllers
                             foreach (var error in value.Errors)
                                 errorMessages += error.ErrorMessage;
 
-                        return Unauthorized(new { Status = 401, Message = errorMessages });
+                        return Unauthorized(new ErrorResult(errorMessages));
                     }
                 }
 
-                return NotFound();
+                return NotFound(new ErrorResult(Messages.UserNotFound));
             }
 
-            return BadRequest();
+            return BadRequest(new ErrorResult(Messages.ModelNotValid));
         }
 
         [HttpPost]
@@ -157,12 +166,12 @@ namespace SehirRehberi.WebApi.Controllers
                 var createForUser = _mapper.Map<ApplicationUser>(userForRegisterDTO);
 
                 if (await _userManager.FindByNameAsync(userForRegisterDTO.UserName) != null)
-                    StatusCode(500, "User already exist");
+                    StatusCode(500, new ErrorResult(Messages.UserAlreadyExist));
 
                 var result = await _userManager.CreateAsync(createForUser, userForRegisterDTO.Password);
 
                 if (!result.Succeeded)
-                    return StatusCode(500, new { Message = result.Errors.Select(s => s.Description).FirstOrDefault() });
+                    return StatusCode(500, new ErrorResult(result.Errors.Select(s => s.Description).FirstOrDefault()));
 
                 if (!await _roleManager.RoleExistsAsync(RoleTypes.User))
                     await _roleManager.CreateAsync(new ApplicationRole() { Name = RoleTypes.User });
@@ -170,10 +179,10 @@ namespace SehirRehberi.WebApi.Controllers
                 if (await _roleManager.RoleExistsAsync(RoleTypes.User))
                     await _userManager.AddToRoleAsync(createForUser, RoleTypes.User);
 
-                return StatusCode(201);
+                return StatusCode(201,new SuccessResult(Messages.UserCreated));
             }
 
-            return BadRequest();
+            return BadRequest(Messages.ModelNotValid);
         }
 
         [HttpPut]
@@ -183,7 +192,7 @@ namespace SehirRehberi.WebApi.Controllers
             var user = await _userManager.FindByIdAsync(userForChangePasswordDTO.UserId);
 
             if (user == null)
-                return NotFound("Istifadeci tapilmadi");
+                return NotFound(new ErrorResult(Messages.UserNotFound));
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
 
@@ -192,12 +201,12 @@ namespace SehirRehberi.WebApi.Controllers
                 var result = await _userManager.ResetPasswordAsync(user, token, userForChangePasswordDTO.Password);
 
                 if (result.Succeeded)
-                    return Ok();
+                    return Ok(new SuccessResult(Messages.PasswordReseted));
                 else
-                    return StatusCode(500, new { Status = 500, Message = "Şifrə sıfırlanmadı.Şifrənizi kontrol edin" });
+                    return StatusCode(500, new ErrorResult(Messages.PasswordCanNotReseted));
             }
 
-            return StatusCode(500, new { Status = 500, Message = "Token atanirken problem yaşandı" });
+            return StatusCode(500, new ErrorResult(Messages.TokenNotProvided));
         }
     }
 }

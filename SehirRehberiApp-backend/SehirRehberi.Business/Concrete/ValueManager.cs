@@ -15,38 +15,26 @@ namespace SehirRehberi.Business.Concrete
     public class ValueManager : IValueService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILogger<ValueManager> _logger;
 
         public ValueManager(IUnitOfWork unitOfWork, ILogger<ValueManager> logger)
         {
             _unitOfWork = unitOfWork;
-            _logger = logger;
         }
 
         public async Task<IDataResult<List<Value>>> GetAllValues()
         {
-            try
-            {
-                return new SuccessDataResult<List<Value>>(await _unitOfWork.Values.GetAll().ToListAsync());
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message ?? ex.InnerException.Message);
-                throw ex;
-            }
+            return new SuccessDataResult<List<Value>>(await _unitOfWork.Values.GetAll().ToListAsync(),Messages.ValueListed);
         }
         public async Task<IDataResult<Value>> GetValueById(int id)
         {
-            try
-            {
-                return new SuccessDataResult<Value>(await _unitOfWork.Values.GetEntityById(id));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message ?? ex.InnerException.Message);
-                throw ex;
-            }
+            var result = await _unitOfWork.Values.GetEntityById(id);
+
+            if (result == null)
+                return new ErrorDataResult<Value>(Messages.ValueNotFound);
+
+            return new SuccessDataResult<Value>(result);
         }
+
         public async Task<IResult> AddValue(Value model)
         {
             if (model == null)
@@ -59,31 +47,17 @@ namespace SehirRehberi.Business.Concrete
         }
         public async Task<IDataResult<Value>> UpdateValue(Value model)
         {
-            try
-            {
-                _unitOfWork.Values.Update(model);
-                await _unitOfWork.Complete();
+            _unitOfWork.Values.Update(model);
+            await _unitOfWork.Complete();
 
-                return new SuccessDataResult<Value>(model);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message ?? ex.InnerException.Message);
-                throw ex;
-            }
+            return new SuccessDataResult<Value>(model,Messages.ValueUpdated);
         }
-        public async Task<IDataResult<int>> DeleteValue(Value model)
+        public async Task<IResult> DeleteValue(Value model)
         {
-            try
-            {
-                _unitOfWork.Values.Delete(model);
-                return new SuccessDataResult<int>(await _unitOfWork.Complete());
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.Message ?? ex.InnerException.Message);
-                throw ex;
-            }
+            _unitOfWork.Values.Delete(model);
+            await _unitOfWork.Complete();
+
+            return new SuccessResult(Messages.ValueDeleted);
         }
 
     }

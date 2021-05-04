@@ -9,7 +9,7 @@ namespace SehirRehberi.Business.Abstract
 {
     public interface IAspNetUserTokenService
     {
-        Task<IDataResult<ApplicationUserToken>> AddToken(ApplicationUserToken token);
+        Task<IDataResult<string>> AddToken(ApplicationUserToken token);
         Task<IDataResult<List<ApplicationUserToken>>> GetTokensByUserId(string userId);
         Task<IResult> RemoveToken(ApplicationUserToken token);
         Task<IDataResult<ApplicationUserToken>> UpdateToken(ApplicationUserToken token);

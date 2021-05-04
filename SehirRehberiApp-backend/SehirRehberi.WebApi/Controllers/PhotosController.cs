@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Business.Constants;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
 using SehirRehberi.Entities.DTOs;
@@ -50,12 +52,12 @@ namespace SehirRehberi.WebApi.Controllers
             var city = await _cityService.GetCityWithPhotosById(cityId);
 
             if (city == null)
-                return NotFound("Not founded city");
+                return NotFound(city);
 
             var currentUser = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             if (currentUser != city.Data.UserId)
-                return Unauthorized();
+                return Unauthorized(new ErrorResult());
 
             #region Photo upload Cloudinary
             var file = photoForCreationDTO.File;
@@ -89,13 +91,13 @@ namespace SehirRehberi.WebApi.Controllers
             photo.City = city.Data;
             var result = await _photoService.AddPhoto(photo);
 
-            if (result.Data.PhotoId > 0)
+            if (result.Success && result.Data.PhotoId > 0)
             {
                 var photoForReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto",new { id = photoForReturn.Id },photoForReturn);
+                return CreatedAtRoute("GetPhoto",new { id = photoForReturn.Id },new SuccessDataResult<PhotoForReturnDto>(photoForReturn, result.Message));
             }
 
-            return BadRequest("Coould not add the photo");
+            return BadRequest(result);
         }
 
         [HttpGet("/GetPhoto/{id}", Name = "GetPhoto")]
@@ -103,12 +105,12 @@ namespace SehirRehberi.WebApi.Controllers
         {
             var photoFromDb = await _photoService.GetPhotoById(id);
 
-            if (photoFromDb == null)
-                return NotFound("Photo not found");
+            if (photoFromDb.Success && photoFromDb.Data == null)
+                return NotFound(new ErrorResult(Messages.PhotoNotFound));
 
             var photo = _mapper.Map<PhotoForReturnDto>(photoFromDb);
 
-            return Ok(photo);
+            return Ok(new SuccessDataResult<PhotoForReturnDto>(photo,photoFromDb.Message));
         }
     }
 }

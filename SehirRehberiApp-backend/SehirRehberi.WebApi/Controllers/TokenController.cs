@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Business.Constants;
 using SehirRehberi.Core.Extensions;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
 using SehirRehberi.Entities.DTOs;
@@ -43,7 +45,7 @@ namespace SehirRehberi.WebApi.Controllers
             var user = await _userManager.FindByNameAsync(userName);
 
             if (user == null)
-                return NotFound("User not found");
+                return NotFound(new ErrorResult(Messages.UserNotFound));
 
 
             var existTokens = await _aspNetUserTokenService.GetTokensByUserId(user.Id);
@@ -54,8 +56,9 @@ namespace SehirRehberi.WebApi.Controllers
                 var existAccessToken = existTokens.Data.FirstOrDefault(f => f.Name == TokenTypes.AccessToken);
                 var existRefreshToken = existTokens.Data.FirstOrDefault(f => f.Name == TokenTypes.RefreshToken);
 
+
                 if (user == null || existRefreshToken.Value != model.RefreshToken || existRefreshToken.ExpireDate <= DateTime.Now)
-                    return Unauthorized("Refresh token expired");
+                    return Unauthorized(new ErrorResult(Messages.RefreshTokenExpired));
 
 
                 var newAccessToken = _tokenService.GenerateAccessToken(principal.Claims);
@@ -67,13 +70,17 @@ namespace SehirRehberi.WebApi.Controllers
                 existRefreshToken.Value = newRefreshToken;
                 existRefreshToken.ExpireDate = DateTime.Now.AddMinutes(5);
 
-                await _aspNetUserTokenService.UpdateToken(existAccessToken);
-                await _aspNetUserTokenService.UpdateToken(existRefreshToken);
+                var uptatedAccessToken = await _aspNetUserTokenService.UpdateToken(existAccessToken);
+                var updatedRefreshToken = await _aspNetUserTokenService.UpdateToken(existRefreshToken);
 
-                return Ok(new { newAccessToken, newRefreshToken });
+                if (uptatedAccessToken.Success && updatedRefreshToken.Success)
+                {
+                    var newTokens = new TokensForRefreshDto { AccessToken = newAccessToken, RefreshToken = newRefreshToken };
+                    return Ok(new SuccessDataResult<TokensForRefreshDto>(newTokens));
+                }
             }
 
-            return BadRequest(existTokens.Message);
+            return BadRequest(existTokens);
 
         }
 
@@ -83,7 +90,7 @@ namespace SehirRehberi.WebApi.Controllers
         {
             var result = await Task.Run(() => _tokenService.ValidateToken(token));
 
-            return Ok(result);
+            return Ok(new SuccessDataResult<bool>(result,result ? Messages.TokenValid:Messages.TokenNotValid));
         }
 
         [HttpPost]
@@ -98,8 +105,8 @@ namespace SehirRehberi.WebApi.Controllers
             //Exist tokens find
             var existTokens = await _aspNetUserTokenService.GetTokensByUserId(user.Id);
 
-            if (existTokens.Data.Count == 0)
-                return NotFound("Tokens not found");
+            if (!existTokens.Success && existTokens.Data.Count == 0)
+                return NotFound(existTokens);
 
             foreach (var existToken in existTokens.Data)
             {
@@ -109,7 +116,7 @@ namespace SehirRehberi.WebApi.Controllers
                 await _aspNetUserTokenService.UpdateToken(existToken);
             }
 
-            return Ok("Tokens revoked");
+            return Ok(new SuccessResult(Messages.TokensRevoked));
         }
     }
 }

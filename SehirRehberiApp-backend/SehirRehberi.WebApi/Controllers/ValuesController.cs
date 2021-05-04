@@ -26,7 +26,12 @@ namespace SehirRehberi.API.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _valueService.GetAllValues());
+            var result = await _valueService.GetAllValues();
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpGet("{id}")]
@@ -34,25 +39,34 @@ namespace SehirRehberi.API.Controllers
         {
             var result = await _valueService.GetValueById(id);
 
-            if (result == null)
-            {
-                return NotFound();
-            }
+            if (result.Success)
+                return Ok(result);
 
-            return Ok(result);
+            return NotFound(result);
+
         }
        
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Value model)
         {
+            var result = await _valueService.AddValue(model);
 
-            return Ok(await _valueService.AddValue(model));
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
+
         }
 
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] Value model)
         {
-            return Ok(await _valueService.UpdateValue(model));
+            var result = await _valueService.UpdateValue(model);
+
+            if (result.Success)
+                return Ok(result);
+
+            return BadRequest(result);
         }
 
         [HttpDelete("{id}")]
@@ -60,12 +74,17 @@ namespace SehirRehberi.API.Controllers
         {
             var result = await _valueService.GetValueById(id);
 
-            if (result.Data == null)
+            if (result.Success)
             {
-                return NotFound();
+                var dataForDelete = await _valueService.DeleteValue(result.Data);
+
+                if (dataForDelete.Success)
+                    return Ok(dataForDelete);
+
+                return BadRequest(dataForDelete);
             }
 
-            return Ok(await _valueService.DeleteValue(result.Data));
+            return NotFound(result);
         }
     }
 }

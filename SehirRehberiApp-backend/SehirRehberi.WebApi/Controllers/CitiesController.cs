@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
 using SehirRehberi.Entities.DTOs;
@@ -21,6 +22,9 @@ namespace SehirRehberi.WebApi.Controllers
     [ApiController]
     public class CitiesController : ControllerBase
     {
+        //IoC contrainer inversion of control
+        //Loosely coupled
+        //naming convention
         private readonly ICityService _cityService;
         private readonly IPhotoService _photoService;
 
@@ -34,9 +38,8 @@ namespace SehirRehberi.WebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        [Route("getAllCities")]
         [AllowAnonymous]
+        [HttpGet("getAllCities")]
         public async Task<IActionResult> GetAllCities()
         {
 
@@ -44,53 +47,53 @@ namespace SehirRehberi.WebApi.Controllers
 
             if (result.Success)
             {
-                return Ok(_mapper.Map<List<CityForListDto>>(result.Data));
+                var mappedData = _mapper.Map<List<CityForListDto>>(result.Data);
+
+                return Ok(new SuccessDataResult<List<CityForListDto>>(mappedData,result.Message));
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
-        [HttpGet]
-        [Route("getCityById/{id}")]
+        [HttpGet("getCityById/{id}")]
         public async Task<IActionResult> GetCityById(int id)
         {
             var result = await _cityService.GetCityById(id);
 
             if (result.Success)
             {
-                return Ok(_mapper.Map<CityForDetailDto>(result.Data));
+                var mappedData = _mapper.Map<CityForDetailDto>(result.Data);
+
+                return Ok(new SuccessDataResult<CityForDetailDto>(mappedData, result.Message));
             }
 
-            return BadRequest(result.Message);
+            return NotFound(result);
         }
 
-        [HttpGet]
-        [Route("getPhotosByCityId/{cityId}")]
+        [HttpGet("getPhotosByCityId/{cityId}")]
         public async Task<IActionResult> GetPhotosByCityId(int cityId)
         {
             var result = await _photoService.GetPhotosByCityId(cityId);
 
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
-            return BadRequest(result.Message);
+            return NotFound(result);
         }
 
-        [HttpPost]
-        [Route("addCity")]
+        [HttpPost("addCity")]
         public async Task<IActionResult> AddCity([FromBody] City city)
         {
             var result = await _cityService.AddCity(city);
 
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
-            return BadRequest(result.Message);
-
+            return BadRequest(result);
         }
 
 
