@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfCityRepository : EfGenericRepositoryBase<City>,ICityRepository
+    public class EfCityRepository : EfGenericRepositoryBase<City>,ICityDal
     {
         public EfCityRepository(ApplicationIdentityDbContext context) : base(context)
         {

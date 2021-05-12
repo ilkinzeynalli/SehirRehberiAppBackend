@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using SehirRehberi.Core.Utilities.Security.Jwt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,15 @@ namespace SehirRehberi.WebApi.Modules
 {
     internal class JwtModule
     {
+        public static IConfiguration Configuration { get; set; }
+        private static TokenOptions _tokenOptions;
+
+        
         public static void Load(IServiceCollection services, IConfiguration configuration)
         {
+            Configuration = configuration;
+            _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+
             //Adding Authentication
             services.AddAuthentication(options =>
             {
@@ -26,21 +34,16 @@ namespace SehirRehberi.WebApi.Modules
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = GetTokenValidationParameters(configuration);
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_tokenOptions.SecurityKey)),
+                    ClockSkew = TimeSpan.Zero
+                };
             });
-        }
-
-        public static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
-        {
-           return new TokenValidationParameters()
-            {
-                ValidateAudience = false,
-                ValidateIssuer = false,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JWT:SecretKey").Value)),
-                ClockSkew = TimeSpan.Zero
-            };
         }
     }
 }

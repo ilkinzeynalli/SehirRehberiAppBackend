@@ -1,13 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using SehirRehberi.Business.Abstract;
 using SehirRehberi.Business.Constants;
 using SehirRehberi.Core.Utilities.Results;
 using SehirRehberi.DataAccess.Abstract;
 using SehirRehberi.Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SehirRehberi.Business.Concrete
@@ -16,7 +13,7 @@ namespace SehirRehberi.Business.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public ValueManager(IUnitOfWork unitOfWork, ILogger<ValueManager> logger)
+        public ValueManager(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -34,7 +31,6 @@ namespace SehirRehberi.Business.Concrete
 
             return new SuccessDataResult<Value>(result);
         }
-
         public async Task<IResult> AddValue(Value model)
         {
             if (model == null)

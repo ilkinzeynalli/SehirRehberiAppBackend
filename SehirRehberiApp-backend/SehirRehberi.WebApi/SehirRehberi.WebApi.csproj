@@ -6,8 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="CloudinaryDotNet" Version="1.15.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
@@ -25,6 +23,10 @@
     <ProjectReference Include="..\SehirRehberi.Core\SehirRehberi.Core.csproj" />
     <ProjectReference Include="..\SehirRehberi.DataAccess\SehirRehberi.DataAccess.csproj" />
     <ProjectReference Include="..\SehirRehberi.Entities\SehirRehberi.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
 
 

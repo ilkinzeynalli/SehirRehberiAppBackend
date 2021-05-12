@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Text;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -11,12 +5,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
-using NLog;
 using SehirRehberi.API.Modules;
+using SehirRehberi.Core.Utilities.CloudMediaStorages.Cloudinary;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Seeders;
-using SehirRehberi.WebApi.Mappings;
-using SehirRehberi.WebApi.Models;
 using SehirRehberi.WebApi.Modules;
 
 namespace SehirRehberi.API
@@ -39,7 +31,7 @@ namespace SehirRehberi.API
             EnableCrossModule.Load(services, CorsPolicyName);
 
             services.AddControllers()
-                    .AddFluentValidation()
+                    //.AddFluentValidation()
                     .AddNewtonsoftJson(jsonOption =>
                     {
                         jsonOption.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
@@ -57,7 +49,7 @@ namespace SehirRehberi.API
             services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
 
             //Auto Mapper configuration
-            services.AddSingleton(AutoMapperConfig.CreateMapper());
+            //services.AddSingleton(AutoMapperConfig.CreateMapper());
 
             //Adding Identity Server
             IdentityModule.Load(services);
@@ -66,10 +58,10 @@ namespace SehirRehberi.API
             JwtModule.Load(services, Configuration);
 
             //Configure DI for app services
-            LogicModule.Load(services);
+            //LogicModule.Load(services);
 
-            //Validator configure
-            ValidatorModule.Load(services);
+            ////Validator configure
+            //ValidatorModule.Load(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

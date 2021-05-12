@@ -100,6 +100,11 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csproj.CoreCompileInputs.cache
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cs
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.API\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csprojAssemblyReference.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.AssemblyInfoInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.AssemblyInfo.cs
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csproj.CoreCompileInputs.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\nlog.config
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\appsettings.json
@@ -110,8 +115,11 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\SehirRehberi.WebApi.runtimeconfig.dev.json
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\SehirRehberi.WebApi.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\SehirRehberi.WebApi.pdb
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\Autofac.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\Autofac.Extensions.DependencyInjection.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\Autofac.Extras.DynamicProxy.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\AutoMapper.dll
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\Castle.Core.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\CloudinaryDotNet.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\FluentValidation.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
@@ -185,12 +193,6 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\SehirRehberi.Core.pdb
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\SehirRehberi.DataAccess.pdb
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\bin\Debug\netcoreapp3.1\SehirRehberi.Entities.pdb
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csprojAssemblyReference.cache
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.AssemblyInfoInputs.cache
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.AssemblyInfo.cs
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csproj.CoreCompileInputs.cache
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cs
-C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cache
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.RazorTargetAssemblyInfo.cache
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.csproj.CopyComplete
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\staticwebassets\SehirRehberi.WebApi.StaticWebAssets.Manifest.cache
@@ -198,3 +200,4 @@ C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-b
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.dll
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.pdb
 C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.genruntimeconfig.cache
+C:\Tutorials\Examples\Single Page App Examples\SehirRehberiApp\SehirRehberiApp-backend\SehirRehberi.WebApi\obj\Debug\netcoreapp3.1\SehirRehberi.WebApi.MvcApplicationPartsAssemblyInfo.cs

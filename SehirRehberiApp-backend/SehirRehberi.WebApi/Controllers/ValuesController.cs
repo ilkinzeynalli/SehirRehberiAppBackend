@@ -6,13 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SehirRehberi.Business.Abstract;
+using SehirRehberi.Business.Constants;
+using SehirRehberi.Core.Attributes;
 using SehirRehberi.DataAccess.Concrete.EntityFramework.Contexts;
 using SehirRehberi.Entities.Concrete;
-using SehirRehberi.WebApi.Attributes;
 
 namespace SehirRehberi.API.Controllers
 {
     [ApiRoutePrefix("values")]
+    [AuthorizeRoles(RoleTypes.Admin)]
     [ApiController]
     public class ValuesController : ControllerBase
     {

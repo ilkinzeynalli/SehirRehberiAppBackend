@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfValueRepository : EfGenericRepositoryBase<Value>,IValueRepository
+    public class EfValueRepository : EfGenericRepositoryBase<Value>,IValueDal
     {
         public EfValueRepository(ApplicationIdentityDbContext context)
             :base(context)

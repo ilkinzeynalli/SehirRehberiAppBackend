@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfPhotoRepository : EfGenericRepositoryBase<Photo>, IPhotoRepository
+    public class EfPhotoRepository : EfGenericRepositoryBase<Photo>, IPhotoDal
     {
         public EfPhotoRepository(ApplicationIdentityDbContext context)
             :base(context)

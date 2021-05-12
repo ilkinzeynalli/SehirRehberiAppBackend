@@ -1,4 +1,5 @@
 ﻿using SehirRehberi.Entities.Concrete;
+using SehirRehberi.Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -36,5 +37,11 @@ namespace SehirRehberi.Business.Constants
         public static string TokensRevoked = "Tokens revoked";
         public static string TokenValid = "Token valid";
         public static string TokenNotValid = "Token not valid";
+        public static string TokenCanNotEmpty = "Token can not empty";
+        public static string CityNameAlreadyExist = "City name already exist";
+        public static string CityCountOfUserError = "City count of User Error";
+        public static string CityCanNotAdded = "City can not added";
+        public static string OutOfService = "Out of Service";
+        public static string CloudeCanNotUpload = "Cloude can not upload";
     }
 }

@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using SehirRehberi.Business.Abstract;
-using SehirRehberi.Core.Utilities.Results;
-using SehirRehberi.DataAccess.Abstract;
+using SehirRehberi.Business.Constants;
+using SehirRehberi.Core.Attributes;
 using SehirRehberi.Entities.Concrete;
-using SehirRehberi.Entities.DTOs;
-using SehirRehberi.WebApi.Attributes;
-using SehirRehberi.WebApi.Models;
 
 namespace SehirRehberi.WebApi.Controllers
 {
@@ -25,32 +16,24 @@ namespace SehirRehberi.WebApi.Controllers
         //IoC contrainer inversion of control
         //Loosely coupled
         //naming convention
-        private readonly ICityService _cityService;
-        private readonly IPhotoService _photoService;
+        private readonly ICityService _cityManager;
+        private readonly IPhotoService _photoManager;
 
-        private readonly IMapper _mapper;
-        public CitiesController(IMapper mapper,
-                                ICityService cityService,
-                                IPhotoService photoService)
+        public CitiesController(ICityService cityManager,
+                                IPhotoService photoManager)
         {
-            _cityService = cityService;
-            _photoService = photoService;
-            _mapper = mapper;
+            _cityManager = cityManager;
+            _photoManager = photoManager;
         }
 
         [AllowAnonymous]
         [HttpGet("getAllCities")]
         public async Task<IActionResult> GetAllCities()
         {
-
-            var result = await _cityService.GetAllCitiesWithPhotos();
+            var result = await _cityManager.GetAllCitiesWithPhotos();
 
             if (result.Success)
-            {
-                var mappedData = _mapper.Map<List<CityForListDto>>(result.Data);
-
-                return Ok(new SuccessDataResult<List<CityForListDto>>(mappedData,result.Message));
-            }
+                return Ok(result);
 
             return BadRequest(result);
         }
@@ -58,14 +41,10 @@ namespace SehirRehberi.WebApi.Controllers
         [HttpGet("getCityById/{id}")]
         public async Task<IActionResult> GetCityById(int id)
         {
-            var result = await _cityService.GetCityById(id);
+            var result = await _cityManager.GetCityById(id);
 
             if (result.Success)
-            {
-                var mappedData = _mapper.Map<CityForDetailDto>(result.Data);
-
-                return Ok(new SuccessDataResult<CityForDetailDto>(mappedData, result.Message));
-            }
+                return Ok(result);
 
             return NotFound(result);
         }
@@ -73,12 +52,10 @@ namespace SehirRehberi.WebApi.Controllers
         [HttpGet("getPhotosByCityId/{cityId}")]
         public async Task<IActionResult> GetPhotosByCityId(int cityId)
         {
-            var result = await _photoService.GetPhotosByCityId(cityId);
+            var result = await _photoManager.GetPhotosByCityId(cityId);
 
             if (result.Success)
-            {
                 return Ok(result);
-            }
 
             return NotFound(result);
         }
@@ -86,16 +63,12 @@ namespace SehirRehberi.WebApi.Controllers
         [HttpPost("addCity")]
         public async Task<IActionResult> AddCity([FromBody] City city)
         {
-            var result = await _cityService.AddCity(city);
+            var result = await _cityManager.AddCity(city);
 
             if (result.Success)
-            {
                 return Ok(result);
-            }
 
             return BadRequest(result);
         }
-
-
     }
 }

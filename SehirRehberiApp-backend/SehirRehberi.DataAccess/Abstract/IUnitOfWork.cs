@@ -7,10 +7,10 @@ namespace SehirRehberi.DataAccess.Abstract
 {
     public interface IUnitOfWork :IDisposable
     {
-        IValueRepository Values { get; }
-        ICityRepository Cities { get; }
-        IPhotoRepository Photos { get; }
-        IAspNetUserToken AspNetUserTokens { get; }
+        IValueDal Values { get; }
+        ICityDal Cities { get; }
+        IPhotoDal Photos { get; }
+        IAspNetUserTokenDal AspNetUserTokens { get; }
 
         Task<int> Complete();
     }

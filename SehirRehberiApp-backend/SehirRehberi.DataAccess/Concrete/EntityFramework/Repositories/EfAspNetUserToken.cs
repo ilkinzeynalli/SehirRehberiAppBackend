@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
 {
-    public class EfAspNetUserToken : EfGenericRepositoryBase<ApplicationUserToken>,IAspNetUserToken
+    public class EfAspNetUserToken : EfGenericRepositoryBase<ApplicationUserToken>,IAspNetUserTokenDal
     {
         public EfAspNetUserToken(ApplicationIdentityDbContext context)
             :base(context)

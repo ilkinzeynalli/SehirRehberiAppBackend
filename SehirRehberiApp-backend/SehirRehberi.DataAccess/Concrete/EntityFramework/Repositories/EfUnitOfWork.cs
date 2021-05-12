@@ -17,17 +17,17 @@ namespace SehirRehberi.DataAccess.Concrete.EntityFramework.Repositories
         }
 
 
-        private IValueRepository _values;
-        private ICityRepository _cities;
-        private IPhotoRepository _photos;
-        private IAspNetUserToken _aspNetUserTokens;
+        private IValueDal _values;
+        private ICityDal _cities;
+        private IPhotoDal _photos;
+        private IAspNetUserTokenDal _aspNetUserTokens;
 
-        public IValueRepository Values => (_values ?? (_values = new EfValueRepository(_context)));
+        public IValueDal Values => (_values ?? (_values = new EfValueRepository(_context)));
 
-        public ICityRepository Cities => (_cities ?? (_cities = new EfCityRepository(_context)));
+        public ICityDal Cities => (_cities ?? (_cities = new EfCityRepository(_context)));
 
-        public IPhotoRepository Photos => (_photos ?? (_photos = new EfPhotoRepository(_context)));
-        public IAspNetUserToken AspNetUserTokens => (_aspNetUserTokens ?? (_aspNetUserTokens = new EfAspNetUserToken(_context)));
+        public IPhotoDal Photos => (_photos ?? (_photos = new EfPhotoRepository(_context)));
+        public IAspNetUserTokenDal AspNetUserTokens => (_aspNetUserTokens ?? (_aspNetUserTokens = new EfAspNetUserToken(_context)));
 
         public async Task<int> Complete()
         {
