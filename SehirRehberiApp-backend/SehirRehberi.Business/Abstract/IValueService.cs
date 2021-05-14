@@ -13,7 +13,7 @@ namespace SehirRehberi.Business.Abstract
         Task<IDataResult<Value>> GetValueById(int id);
         Task<IDataResult<Value>> UpdateValue(Value value);
         Task<IResult> AddValue(Value value);
-        Task<IResult> DeleteValue(Value value);
+        Task<IResult> DeleteValue(int id);
 
     }
 }

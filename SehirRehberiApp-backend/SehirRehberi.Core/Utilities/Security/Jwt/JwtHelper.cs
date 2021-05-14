@@ -28,7 +28,7 @@ namespace SehirRehberi.Core.Utilities.Security.Jwt
 
             var tokeOptions = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(2),
+                expires: DateTime.Now.AddMinutes(8),
                 signingCredentials: signinCredentials
             );
 

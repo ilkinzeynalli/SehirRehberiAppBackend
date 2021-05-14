@@ -43,5 +43,8 @@ namespace SehirRehberi.Business.Constants
         public static string CityCanNotAdded = "City can not added";
         public static string OutOfService = "Out of Service";
         public static string CloudeCanNotUpload = "Cloude can not upload";
+        public static string ValueCountOfCorrectInvalid = "Value count of correct invalid";
+        public static string EmailOrPasswordInvalid = "E-posta veya şifre yanlışdır.";
+        public static string AccountBlocked = "Şifrənizi ard arda 3 dəfə yalnış girdiyiniz üçün hesabiniz 1 dəqiqəlik bloklanıb.";
     }
 }

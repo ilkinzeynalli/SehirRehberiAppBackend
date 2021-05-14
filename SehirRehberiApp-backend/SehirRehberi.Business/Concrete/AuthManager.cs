@@ -60,52 +60,17 @@ namespace SehirRehberi.Business.Concrete
                 {
                     await _userManager.ResetAccessFailedCountAsync(user);
 
-                    var userRoles = await _userManager.GetRolesAsync(user);
+                    var claims = await SetClaimsForList(user);
 
-                    var claims = new List<Claim>
-                        {
-                            new Claim(ClaimTypes.NameIdentifier,user.Id),
-                            new Claim(ClaimTypes.Name, user.UserName),
-                            new Claim("userId", user.Id),
-                            new Claim("userName", user.UserName),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                        };
-
-                    foreach (var userRole in userRoles)
+                    if (claims.Success)
                     {
-                        claims.Add(new Claim(ClaimTypes.Role, userRole));
+                        var result = await TokensAssignmentForUser(user, claims.Data);
+
+                        return result;
                     }
+                    else
+                        return new ErrorDataResult<TokensDto>(claims.Message);
 
-                    #region Token Check and Assign In DB
-
-                    var existTokens = await _aspNetUserTokenManager.GetTokensByUserId(user.Id);
-                    if (existTokens.Success && existTokens.Data.Count > 0)
-                    {
-                        foreach (var removedToken in existTokens.Data)
-                            await _aspNetUserTokenManager.RemoveToken(removedToken);
-                    }
-
-                    var accessToken = _tokenHelper.GenerateAccessToken(claims);
-                    var accessTokeExpireDate = new JwtSecurityToken(accessToken).ValidTo.ConvertUtcToLocalTime();
-                    var refreshToken = _tokenHelper.GenerateRefreshToken();
-                    var refreshTokenExpireDate = accessTokeExpireDate.AddMinutes(2);
-
-                    var resultForAccessToken = await _aspNetUserTokenManager.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.AccessToken, Value = accessToken, ExpireDate = accessTokeExpireDate });
-                    var resultForRefreshToken = await _aspNetUserTokenManager.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.RefreshToken, Value = refreshToken, ExpireDate = refreshTokenExpireDate });
-
-                    #endregion
-
-                    if (resultForAccessToken.Success && resultForRefreshToken.Success)
-                    {
-                        var tokens = new TokensDto
-                        {
-                            AccessToken = resultForAccessToken.Data,
-                            RefreshToken = resultForRefreshToken.Data
-                        };
-                        return new SuccessDataResult<TokensDto>(tokens, Messages.TokenProvided);
-                    }
-
-                    return new ErrorDataResult<TokensDto>(Messages.TokenNotProvided);
                 }
                 else
                 {
@@ -117,14 +82,14 @@ namespace SehirRehberi.Business.Concrete
                     {
                         await _userManager.SetLockoutEndDateAsync(user, new DateTimeOffset(DateTime.Now.AddMinutes(1)));
 
-                        return new ErrorDataResult<TokensDto>("Şifrənizi ard arda 3 dəfə yalnış girdiyiniz üçün hesabiniz 1 dəqiqəlik bloklandı");
+                        return new ErrorDataResult<TokensDto>(Messages.AccountBlocked);
                     }
                     else
                     {
                         if (signInResult.IsLockedOut)
-                            return new ErrorDataResult<TokensDto>("Şifrənizi ard arda 3 dəfə yalnış girdiyiniz üçün hesabiniz 2 dəqiqəlik bloklanıb.");
+                            return new ErrorDataResult<TokensDto>(Messages.AccountBlocked);
                         else
-                            return new ErrorDataResult<TokensDto>("E-posta veya şifre yanlışdır.");
+                            return new ErrorDataResult<TokensDto>(Messages.EmailOrPasswordInvalid);
                     }
                 }
             }
@@ -158,12 +123,10 @@ namespace SehirRehberi.Business.Concrete
         public async Task<IResult> ChangePassword(UserForChangePasswordDto userForChangePasswordDto)
         {
             var user = await _userManager.FindByIdAsync(userForChangePasswordDto.UserId);
-
             if (user == null)
                 return new ErrorResult(Messages.UserNotFound);
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-
             if (token != null)
             {
                 var result = await _userManager.ResetPasswordAsync(user, token, userForChangePasswordDto.Password);
@@ -237,11 +200,10 @@ namespace SehirRehberi.Business.Concrete
         {
             var user = await _userManager.FindByNameAsync(userName);
 
-            if (user == null) return new ErrorResult(Messages.UserNotFound);
+            if (user == null) 
+                return new ErrorResult(Messages.UserNotFound);
 
-            //Exist tokens find
             var existTokens = await _aspNetUserTokenManager.GetTokensByUserId(user.Id);
-
             if (!existTokens.Success && existTokens.Data.Count == 0)
                 return new ErrorResult(existTokens.Message);
 
@@ -254,6 +216,57 @@ namespace SehirRehberi.Business.Concrete
             }
 
             return new SuccessResult(Messages.TokensRevoked);
+        }
+
+        private async Task<IDataResult<TokensDto>> TokensAssignmentForUser(ApplicationUser user,List<Claim> claims)
+        {
+            var existTokens = await _aspNetUserTokenManager.GetTokensByUserId(user.Id);
+            if (existTokens.Success && existTokens.Data.Count > 0)
+            {
+                foreach (var removedToken in existTokens.Data)
+                    await _aspNetUserTokenManager.RemoveToken(removedToken);
+            }
+
+            var accessToken = _tokenHelper.GenerateAccessToken(claims);
+            var accessTokeExpireDate = new JwtSecurityToken(accessToken).ValidTo.ConvertUtcToLocalTime();
+            var refreshToken = _tokenHelper.GenerateRefreshToken();
+            var refreshTokenExpireDate = accessTokeExpireDate.AddMinutes(10);
+
+            var resultForAccessToken = await _aspNetUserTokenManager.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.AccessToken, Value = accessToken, ExpireDate = accessTokeExpireDate });
+            var resultForRefreshToken = await _aspNetUserTokenManager.AddToken(new ApplicationUserToken() { UserId = user.Id, LoginProvider = "MyApp", Name = TokenTypes.RefreshToken, Value = refreshToken, ExpireDate = refreshTokenExpireDate });
+
+            if (resultForAccessToken.Success && resultForRefreshToken.Success)
+            {
+                var tokens = new TokensDto
+                {
+                    AccessToken = resultForAccessToken.Data,
+                    RefreshToken = resultForRefreshToken.Data
+                };
+                return new SuccessDataResult<TokensDto>(tokens, Messages.TokenProvided);
+            }
+
+            return new ErrorDataResult<TokensDto>(Messages.TokenNotProvided);
+        }
+
+        private async Task<IDataResult<List<Claim>>> SetClaimsForList(ApplicationUser user)
+        {
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.NameIdentifier,user.Id),
+                            new Claim(ClaimTypes.Name, user.UserName),
+                            new Claim("userId", user.Id),
+                            new Claim("userName", user.UserName),
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                        };
+
+            foreach (var userRole in userRoles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, userRole));
+            }
+
+            return new SuccessDataResult<List<Claim>>(claims);
         }
     }
 }

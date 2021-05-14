@@ -71,7 +71,6 @@ namespace SehirRehberi.API
             {
                 app.UseDeveloperExceptionPage();
 
-
                 //Seed Datas
                 SeederIdentityData.EnsurePopulated(app, Configuration).Wait();
                 SeederData.EnsurePopulated(app).Wait();

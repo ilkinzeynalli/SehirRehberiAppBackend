@@ -63,7 +63,7 @@ namespace SehirRehberi.Business.Concrete
             var photo = _mapper.Map<Photo>(photoForCreationDTO);
             photo.City = city.Data;
 
-            AssingMainPhoto(city.Data, photo);
+            AssingAsMainPhoto(city.Data, photo);
 
             _unitOfWork.Photos.Add(photo);
             await _unitOfWork.Complete();
@@ -125,7 +125,7 @@ namespace SehirRehberi.Business.Concrete
             return city;
         }
 
-        private IResult AssingMainPhoto(City city,Photo photo)
+        private IResult AssingAsMainPhoto(City city,Photo photo)
         {
             if (!city.Photos.Any(a => a.IsMain))
             {

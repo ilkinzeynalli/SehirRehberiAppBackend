@@ -74,19 +74,12 @@ namespace SehirRehberi.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _valueService.GetValueById(id);
+            var dataForDelete = await _valueService.DeleteValue(id);
 
-            if (result.Success)
-            {
-                var dataForDelete = await _valueService.DeleteValue(result.Data);
+            if (dataForDelete.Success)
+                return Ok(dataForDelete);
 
-                if (dataForDelete.Success)
-                    return Ok(dataForDelete);
-
-                return BadRequest(dataForDelete);
-            }
-
-            return NotFound(result);
+            return BadRequest(dataForDelete);
         }
     }
 }
